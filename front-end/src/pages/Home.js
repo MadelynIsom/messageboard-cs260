@@ -57,16 +57,20 @@ const [update, setUpdate] = useState(0);
     
     return (
         <div>
-        <h1 class="header"> Rooms </h1>
+        <div class="header">
+          <h1> Rooms </h1>
+        </div>
+        <div  id="add-room-container">
+        <button id="add-room-button" onClick={e => addRoom()}>add room</button>
+        </div>
         <Error error={error} />
-        <button onClick={e => addRoom()}>add room</button>
         <ul>
         {rooms.map( room => (
-        <li>
-            <Link to={room.id}>{room.name}</Link>
-            <button onClick={e => removeRoom(room.id)} >delete</button>
-            <button onClick={e => updateRoom(room.id)} >new name</button>
-        </li>
+          <li>
+              <Link id="room-link" to={room.id}>{room.name}</Link>
+              <button onClick={e => removeRoom(room.id)} >delete</button>
+              <button onClick={e => updateRoom(room.id)} >new name</button>
+          </li>
         ))}
         </ul>
         </div>

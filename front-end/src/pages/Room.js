@@ -84,21 +84,27 @@ function handleUsernameChange(event) {
 	}));
 };
     return (
-        <div>
+        <div class="room-content">
         <h1 class="header">{room.name}</h1>
         <Error error={error} />
-          <form onSubmit={addComment}>
-            <label for="username"> name </label>
-            <input id="username" type="text" name="username" value={values.username} onChange={handleUsernameChange}/>
-            <label for="body"> comment </label>
-            <textarea id="body" type="text" name="body" value={values.body} onChange={handleBodyChange}/>
-            <button type="submit">add a comment</button>
-          </form>
-          {comments.map(comment => (
-            <div>{comment.username} - {comment.body} - {new Date(comment.date).toLocaleString()}
-            <button onClick={e=>deleteComment(comment.id)}>delete</button>
+        {comments.map(comment => (
+            <div>
+              <div class="comment-header">{comment.username} - {new Date(comment.date).toLocaleString()}</div>
+              <div class="comment-body">{comment.body}</div>
+              <button onClick={e=>deleteComment(comment.id)}>delete</button>
             </div>
-          ))}
+        ))}
+          <form class="room-forms" onSubmit={addComment}>
+            <div class="username-form-container">
+            <input class="username" type="text" name="username" placeholder="username" value={values.username} onChange={handleUsernameChange}/>
+            </div>
+            <div class="body-form-container">
+            <textarea rows="10" class="body" type="text" name="body" placeholder="write a comment" value={values.body} onChange={handleBodyChange}/>
+            </div>
+            <div class="add-comment-button">
+            <button type="submit">add comment</button>
+            </div>
+          </form>
         </div>
     );
 };
